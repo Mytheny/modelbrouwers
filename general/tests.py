@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 from django.test import TestCase
 from django.contrib.auth.models import User
 from utils import get_username, clean_username, clean_username_fallback
@@ -29,5 +30,5 @@ class UsernameTest(TestCase):
 
     def test_clean_username(self):
         username = self.object3.user.username
-        self.assertEqual(clean_username(username), u'my\xcauser')
+        self.assertEqual(clean_username(username), u'my\u02B9user') # FIXME find the correct character
         self.assertEqual(clean_username_fallback(username), 'my user')

@@ -2,15 +2,13 @@
 This file contains your local settings and should not be in Git.
 """
 from os.path import join, normpath, dirname, realpath
-
-PROJECT_ROOT = dirname(dirname(dirname(realpath(__file__))))
-
+import sys
 
 try:
     from .secrets import *
 except ImportError:
-    import sys
     sys.exit('secrets.py settings file not found.')
+
 
 from base import *
 
@@ -54,6 +52,21 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ### EMAILING
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = normpath(join(PROJECT_ROOT, 'mails'))
+
+
+### TESTING
+if 'test' in sys.argv:
+    # run tests on in-memory sqlite database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':MEMORY:',
+        },
+        'mysql': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':MEMORY:',
+        },
+    }
 
 
 # try to override with unversioned file
