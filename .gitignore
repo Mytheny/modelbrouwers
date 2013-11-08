@@ -1,5 +1,8 @@
 *.pyc
 
+# [settings]
+secrets.py
+
 # [sublime]
 *.sublime*
 
