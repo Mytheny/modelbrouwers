@@ -1,4 +1,4 @@
-git+ssh://git@github.com/modelbrouwers/django-login-for-phpbb.git@master#egg=sessionprofile
+git+https://git@github.com/modelbrouwers/django-login-for-phpbb.git@master#egg=sessionprofile
 
 Django==1.4.10
 MySQL-python==1.2.4
